@@ -8,11 +8,6 @@ const uint8_t inputPinsPort1[] =  { 5,  6,  7,  8,  0,  4,  0,  0,  0};
 
 //#define DEBUG
 
-uint8_t data1;
-
-
-
-
 void setup() {
   for (uint8_t i = 0; i < 9; i++) {
     if (inputPinsPort1[i] != 0)
@@ -25,17 +20,15 @@ void setup() {
   Serial.begin(9600);
   #endif
 
-  //Serial1.begin(300);
-  //Serial1.begin(9600);
   Serial1.begin(9600, SERIAL_6E2);
 
 }
 
+uint8_t data1;
 uint8_t frame = 0;
 
 void loop() {
 
-  //data1 = 0xff;
   data1 = 0;
 
   for (uint8_t i = 0; i < 4; i++) {
@@ -49,27 +42,13 @@ void loop() {
   Serial.flush();
   #endif
 
-  //uint8_t output = data1^B01010101;
   uint8_t output;
-  //if (frame) output = data1^B101010; else output = data1^B010101; 
-  //uint8_t output = data1;
-  //Serial1.write(0xff);
-  //Serial1.write(B010101);
-  //Serial1.write(B010101);
-  //uint8_t dummy = 0xff;
-  //dummy = bitClear(dummy, frame & B11111);
   uint8_t dummy = 0;
   dummy = bitSet(dummy, frame & B11111);
   output = data1^B10101;
-  //Serial1.write((frame & B11111) | B100000);
   Serial1.write(dummy | B100000);
   Serial1.write(output);
-
   Serial.flush();
 
-  //delayMicroseconds(100);
-  //frame ^= 1;
   frame++;
-
-
 }
