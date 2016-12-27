@@ -1,8 +1,6 @@
 //#define DEBUG
 
-
 //DB9 (8=GND, 7=VCC):                1   2   3   4   5   6   7   8   9
-//const uint8_t outputPinsPort1[] =  {15, 14, 16, 10,  0,  9,  0,  0,  0};
 const uint8_t outputPinsPort1[] =  {15, 14,  A1,  A0,  0,  9,  0,  0,  0};
 //const uint8_t outputPinsPort2[] =  {10, 16, 14, 15,  0,  3,  0,  0,  0};
 
@@ -26,8 +24,6 @@ void setup() {
   Serial.begin(115200);
   #endif
 
-  //Serial1.begin(300);
-  //Serial1.begin(9600);
   Serial1.begin(9600, SERIAL_6E2);
 }
 
