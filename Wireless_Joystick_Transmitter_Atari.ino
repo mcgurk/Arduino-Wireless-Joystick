@@ -6,8 +6,9 @@
 const uint8_t inputPinsPort1[] =  { 5,  6,  7,  8,  0,  4,  0,  0,  0};
 //const uint8_t inputPinsPort2[] =  {10, 16, 14, 15,  0,  3,  0,  0,  0};
 
+// Connect transmitter to pin 0 (TX)
 
-//#define DEBUG
+//#define DEBUG //don't use if your SerialPort is Serial
 
 void setup() {
   for (uint8_t i = 0; i < 9; i++) {
