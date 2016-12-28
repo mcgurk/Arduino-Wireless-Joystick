@@ -6,10 +6,10 @@ const uint8_t outputPinsPort1[] =  {15, 14,  A1,  A0,  0,  9,  0,  0,  0};
 //const uint8_t outputPinsPort2[] =  {10, 16, 14, 15,  0,  3,  0,  0,  0};
 
 // Connect receiver to pin 1 (RX)
+// Receiver VCC can be connected to I/O-pin because VCC of Arduino is occupied:
+#define RECEIVER_VCC_PIN 2
 
 //#define DEBUG //don't use if your SerialPort is Serial
-
-#define RECEIVER_VCC_PIN 2
 
 void setup() {
   for (uint8_t i = 0; i < 9; i++) {
