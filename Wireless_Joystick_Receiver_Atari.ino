@@ -1,8 +1,11 @@
-//#define DEBUG
+//#define SerialPort Serial // Arduino Uno, Pro Mini, Nano...
+#define SerialPort Serial1 // Arduino Pro Micro, Leonardo...
 
 //DB9 (8=GND, 7=VCC):                1   2   3   4   5   6   7   8   9
 const uint8_t outputPinsPort1[] =  {15, 14,  A1,  A0,  0,  9,  0,  0,  0};
 //const uint8_t outputPinsPort2[] =  {10, 16, 14, 15,  0,  3,  0,  0,  0};
+
+//#define DEBUG
 
 #define RECEIVER_VCC_PIN 2
 
@@ -30,7 +33,7 @@ uint8_t input;
 uint8_t data1;
 
 void loop() {
-  input = Serial1.read();
+  input = SerialPort.read();
   if (!bitRead(input, 5)) data1 = input ^ B10101; else data1 = 0;
 
   if (data1) {
