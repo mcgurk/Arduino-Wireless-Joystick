@@ -9,11 +9,10 @@ const uint8_t outputPinsPort1[] =  {15, 14,  A1,  A0,  0,  9,  0,  0,  0};
 void setup() {
   for (uint8_t i = 0; i < 9; i++) {
     if (outputPinsPort1[i] != 0) {
-      pinMode(outputPinsPort1[i], OUTPUT);
-      digitalWrite(outputPinsPort1[i], HIGH);
+      pinMode(outputPinsPort1[i], INPUT); //float all pins
     }
     /*if (outputPinsPort2[i] != 0)
-      pinMode(outputPinsPort2[i], INPUT_PULLUP);*/
+      pinMode(outputPinsPort2[i], INPUT);*/
   }
 
   pinMode(RECEIVER_VCC_PIN, OUTPUT);
@@ -36,11 +35,17 @@ void loop() {
 
   if (data1) {
     for (uint8_t i = 0; i < 4; i++) {
-      digitalWrite(outputPinsPort1[i], bitRead(data1, i)); //AXES1
+      pinMode(outputPinsPort1[i], !bitRead(data1, i)); //AXES1
     }
-    digitalWrite(outputPinsPort1[5], bitRead(data1, 4)); //fire
+    pinMode(outputPinsPort1[5], !bitRead(data1, 4)); //fire
   }
-  
+  // pinMode is used in place of digitalWrite because pins must change between GND and float. 
+  // Spacebar doesn't work with Commodore 64 if port 1 pin 6 (fire) is high.
+  // pinMode modes:
+  // #define INPUT 0x0
+  // #define OUTPUT 0x1
+  // #define INPUT_PULLUP 0x2
+
   #ifdef DEBUG
   if (data1) {
     Serial.print(data1, BIN);
