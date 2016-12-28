@@ -1,5 +1,6 @@
 
-
+//#define SerialPort Serial // Arduino Uno, Pro Mini, Nano...
+#define SerialPort Serial1 // Arduino Pro Micro, Leonardo...
 
 //DB9 (8=GND, 7=VCC):               1   2   3   4   5   6   7   8   9
 const uint8_t inputPinsPort1[] =  { 5,  6,  7,  8,  0,  4,  0,  0,  0};
@@ -20,7 +21,7 @@ void setup() {
   Serial.begin(9600);
   #endif
 
-  Serial1.begin(9600, SERIAL_6E2);
+  SerialPort.begin(9600, SERIAL_6E2);
 
 }
 
@@ -46,9 +47,9 @@ void loop() {
   uint8_t dummy = 0;
   dummy = bitSet(dummy, frame & B11111);
   output = data1^B10101;
-  Serial1.write(dummy | B100000);
-  Serial1.write(output);
-  Serial.flush();
+  SerialPort.write(dummy | B100000);
+  SerialPort.write(output);
+  SerialPort.flush();
 
   frame++;
 }
