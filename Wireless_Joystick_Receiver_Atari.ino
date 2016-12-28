@@ -5,7 +5,7 @@
 const uint8_t outputPinsPort1[] =  {15, 14,  A1,  A0,  0,  9,  0,  0,  0};
 //const uint8_t outputPinsPort2[] =  {10, 16, 14, 15,  0,  3,  0,  0,  0};
 
-//#define DEBUG
+//#define DEBUG //don't use if your SerialPort is Serial
 
 #define RECEIVER_VCC_PIN 2
 
